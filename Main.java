@@ -2,7 +2,7 @@ class Main {
 	
 	public static void main(String[] args) {
 		int[] arr = {1, 2, 6 ,4 ,5, 6, 7, 8, 9, 10, -100, -2323, 999};
-		int[] simpleArr = {1, 3, 5, -9};
+		int[] simpleArr = {1, 3, 5, -9, 8};
 		System.out.println(maxValue(arr));
 		System.out.println(minValue(arr));
 		System.out.println(sumValues(simpleArr));
@@ -16,13 +16,13 @@ class Main {
 		if(j == i) {
 			return vector[i];
 		}else {
-			
 			if(j == i + 1)
 				return vector[i] > vector[j] ? vector[i] : vector[j];
 			
 			int mid = (j - i)/2 + i;
 			int max1 = maxValue(vector, i, mid);
 			int max2 = maxValue(vector, mid + 1, j);
+
 			return max1 > max2 ? max1 : max2;
 		}
 	}
@@ -64,4 +64,5 @@ class Main {
 			return sum1 + sum2;
 		}
 	}
+	
 }
