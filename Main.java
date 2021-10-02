@@ -6,8 +6,17 @@ class Main {
 		System.out.println(maxValue(arr));
 		System.out.println(minValue(arr));
 		System.out.println(sumValues(simpleArr));
+		
+		
+		System.out.println("Ejercicio 2");
+		System.out.println("a) Result: " + sumaOneToN(4));
+		System.out.println("b) Result: " + productoOneToN(3));
+		System.out.println("c) Result: " + isPrimeNumber(4));
+		System.out.println("d) Result: " + powTwoToN(10));
 	}
 
+	
+	// EJERCICIO 1
 	public static int maxValue(int [] vector) {
 		return maxValue(vector, 0, vector.length - 1);
 	}
@@ -65,4 +74,33 @@ class Main {
 		}
 	}
 	
+	
+	// EJERCICIO 2
+	// A)
+	public static int sumaOneToN(int n) {
+		return n == 1 ? 1: n + sumaOneToN(--n);
+	}
+	// B)
+	public static int productoOneToN(int n) {
+		return n == 1 ? 1: (int)Math.pow(n, 2) + productoOneToN(--n);
+	}
+	
+	public static boolean isPrimeNumber(int n) {
+		return isPrimeNumber(n - 1, n);
+	}
+	// C)
+	private static boolean isPrimeNumber(int count, int n) {
+		if(count == 1) {
+			return true;
+		}else if(n == 1 || n % count == 0) {
+			return false;
+		}
+		else {
+			return isPrimeNumber(--count, n);
+		}
+	}
+	// D)
+	public static int powTwoToN(int n) {
+		return n == 0 ? 1: 2 * powTwoToN(--n);
+	}
 }
