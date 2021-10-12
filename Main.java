@@ -2,7 +2,7 @@
 /*
  * Solo los ejercicios 1, 6 y 7 han sido resueltos completamente
  *	Link con los ejercicios 1 y 7 
- * 	.	
+ * 	.https://drive.google.com/file/d/1V3BUXYCCHcmYpOQgtC9OO_OBV2XOy6VA/view?usp=sharing
  * 
  */
 
