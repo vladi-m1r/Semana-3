@@ -1,3 +1,4 @@
+import java.util.Stack;
 
 /*
  * Solo los ejercicios 1, 6 y 7 han sido resueltos completamente
@@ -45,15 +46,13 @@ class Main {
 		System.out.println("Result: " + misterio2(simpleArr, simpleArr.length));
 		
 		System.err.println("\nEjercicio 6");
-		System.out.println("Result: " + ackermanFunc(3, 2));
-		System.out.println("Result: " + ackermanFunc2(3, 2));
+		System.out.println("Result: " + ackermanFunc(3, 4));
+		System.out.println("Result: " + ackermanFuncRec(3, 4));
 		
-
 	}
 
 	
 	// EJERCICIO 1
-	
 	// A)
 	public static int maxValue(int [] vector) {
 		return maxValue(vector, 0, vector.length - 1);
@@ -164,20 +163,6 @@ class Main {
 		return m;
 	}
 	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// PENDIENTES
 	// EJERCICIO 2
 	// A)
@@ -262,45 +247,53 @@ class Main {
 			return arr[size];
 		}
 	}
-	
-	
-	// Ejercicio 6
+
+	// EJERCICIO 6
 	public static int ackermanFunc(int m, int n) {
-		// Version recursiva de la funcion ackerman
+		// Version iterativa de la funcion ackerman
+		Stack<int[]> stack = new Stack<int []>();
+		// El lugar 0 es para el valor M y el lugar 1 para el estado del stack
+		stack.push(new int [] {m, 1});
+		do {
+			// Va a ejecutarse
+			if(stack.lastElement()[1] == 1) {
+				if(m == 0) {
+					n = n + 1;
+					stack.pop();
+				}else if(n == 0) { // N == 0
+					stack.lastElement()[1] = 0;// Establece que ya se ejecuto ese stack
+					m = m - 1;
+					n = 1;
+					stack.push(new int [] {m, 1});
+				}else {
+					// El valor que tenga n no importa ya que el siguiente stack decidira su valor
+					stack.lastElement()[1] = 0; // Establece que ya se ejecuto ese stack
+					stack.push(new int [] {m - 1, 2});
+					stack.push(new int [] {m, 1});
+					n = n - 1; // Establece el valor del segundo stack
+				}
+			// Su ejecucion estaba pendiente
+			}else if(stack.lastElement()[1] == 2) {
+				stack.lastElement()[1] = 1;
+				m = stack.lastElement()[0];
+			// Ya se ejecuto
+			}else {
+				stack.pop();
+			}
+		}while(!stack.empty());
+		
+		return n;
+	}
+	
+	public static int ackermanFuncRec(int m, int n) {
+		// Version recursiva de ackerman Func
 		if(m == 0) {
 			return n + 1;
 		}else if(n == 0) {
-			return ackermanFunc(m - 1, 1);
+			return ackermanFuncRec(m - 1, 1);
 		}else {
-			return ackermanFunc(m - 1, ackermanFunc(m, n - 1));
+			return ackermanFuncRec(m - 1, ackermanFuncRec(m, n - 1));
 		}
-	}
-
-	public static int ackermanFunc2(int m, int n) {
-		// Version iterativa de la funcion ackerman
-		
-		while(m != 0) {
-			if(n == 0) {
-				m = m - 1;
-				n = 1;
-			}else {
-				n = n - 1;
-				if(m == 0) {
-					n = n + 1;
-				}else if(n == 0) {
-					m = m - 1;
-					n = 1;
-				}
-				
-			}
-		}
-		
-		return n + 1;
 	}
 	
 }
-
-
-
-
-
