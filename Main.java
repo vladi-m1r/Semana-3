@@ -52,7 +52,7 @@ class Main {
 		System.out.println("a) Iterativo Result: " + mcd2(num1, num2));
 		
 		// Prueba de tiempo de ejecucion (Recursiva vs Iterativa)
-		tiempoDeEjecucion();
+		//tiempoDeEjecucion();
 	}
 
 	
